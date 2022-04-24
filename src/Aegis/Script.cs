@@ -92,7 +92,6 @@ public class Script
 
     private void RemoveComment()
     {
-#if true
         var flag    = false;
         var comment = false;
         var count   = this._lines.Count;
@@ -177,80 +176,10 @@ public class Script
 
             this._lines[r] = characterIndex > 0 ? new string(lineArray, 0, characterIndex) : string.Empty;
         }
-
-#else
-            bool flag = false;
-            bool comment = false;
-            int count = _lines.Count;
-
-            for (int r = 0; r < count; r++)
-            {
-                if (flag == true)
-                {
-                    Console.WriteLine();
-                }
-
-                flag = false;
-                string pc = _lines[r];
-                int idx = 0;
-                while (idx < pc.Length)
-                {
-                    var check = pc.Substring(idx);
-                    if (comment)
-                    {
-                        if (check.IndexOf(BLOCKCOMMENT_END, StringComparison.Ordinal) > -1)
-                        {
-                            comment = false;
-                            pc =
- pc.Substring(check.IndexOf(BLOCKCOMMENT_END, StringComparison.Ordinal) + BLOCKCOMMENT_END.Length);
-                        }
-                        else
-                        {
-                            pc = string.Empty;
-                        }
-                    }
-                    else
-                    {
-                        if (flag)
-                        {
-                            if (check.StartsWith(STRING_END, StringComparison.Ordinal))
-                                flag = false;
-                        }
-                        else
-                        {
-                            if (check.StartsWith(STRING_BEGIN, StringComparison.Ordinal))
-                            {
-                                flag = true;
-                            }
-                            else if (check.StartsWith(BLOCKCOMMENT_BEGIN, StringComparison.Ordinal))
-                            {
-                                comment = true;
-                                pc = pc.Substring(0, idx);
-                            }
-                            else if (check.StartsWith(LINECOMMENT, StringComparison.Ordinal))
-                            {
-                                pc = pc.Substring(0, idx);
-                                break;
-                            }
-                        }
-                    }
-
-                    idx++;
-                }
-
-                m_line[r] = pc;
-            }
-#endif
     }
 
     private void Clear()
     {
-        // if (m_buf)
-        // {
-        // delete[] m_buf;
-        // m_buf = NULL;
-        // }
-
         this._lines?.Clear();
         this._dataSize = 0;
         this._comment  = false;

@@ -58,11 +58,6 @@ public partial class Interpreter
             return false;
         }
 
-        /*
-        string pc = m_bin + m_pos;
-        m_pos += size;
-        data = (uint)pc;
-        */
         return true;
     }
 
