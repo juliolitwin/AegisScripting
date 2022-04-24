@@ -10,6 +10,8 @@ It is functional and tested, but not ideal. I'm publishing because I ended up re
 
 It's just a scripting library, so all the backend implementation you need to implement yourself.
 
+It's a simple code too, I was thinking about the conversion just for performance tests, so there's no optimization, better use of string or also thinking about GC.
+
 ## Script example
 
 ```
